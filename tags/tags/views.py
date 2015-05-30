@@ -1,9 +1,15 @@
-from django.contrib.auth.models import User
-from rest_framework import status, viewsets
-from rest_framework.decorators import detail_route, list_route
-from rest_framework.response import Response
-from tags.models import Library
-from tags.serializers import LibrarySerializer
+from rest_framework import filters, viewsets
+
+from .filters import LibraryFilter
+from .models import Library, Tag
+from .serializers import LibrarySerializer, TagSerializer
+
+
+class TagViewSet(viewsets.ModelViewSet):
+    """
+    """
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
 
 class LibraryViewSet(viewsets.ModelViewSet):
@@ -11,3 +17,5 @@ class LibraryViewSet(viewsets.ModelViewSet):
     """
     queryset = Library.objects.all()
     serializer_class = LibrarySerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = LibraryFilter
