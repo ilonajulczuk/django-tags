@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from rest_framework.routers import DefaultRouter
+from tags.views import LibraryViewSet
 
-urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-]
+router = DefaultRouter()
+router.register(r'libraries', LibraryViewSet)
+urlpatterns = router.urls
