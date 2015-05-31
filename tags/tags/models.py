@@ -8,7 +8,6 @@ class Tag(models.Model):
         return '[id: {id}, text: {text}]'.format(id=self.id, text=self.text)
 
 
-
 class Library(models.Model):
     url = models.URLField()
     name = models.SlugField(max_length=80)
