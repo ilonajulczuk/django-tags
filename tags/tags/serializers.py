@@ -15,9 +15,11 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class LibrarySerializer(serializers.ModelSerializer):
-    tags = serializers.SlugRelatedField(many=True,
-                                        queryset=Tag.objects.all(),
-                                        slug_field='text')
+    tags = serializers.SlugRelatedField(
+        many=True,
+        queryset=Tag.objects.all(),
+        slug_field='text'
+    )
 
     class Meta:
         model = Library
